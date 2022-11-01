@@ -6,8 +6,10 @@ using UnityEngine; //Namespace. Where MonoBehaviour lives
 // Private is only accessable from itself
 public class Movement : MonoBehaviour //Inheritance, Inheriting content from MonoBehaviour
 {
-    
+    // Get reference to component 
+    // Type Variable;
     Rigidbody rb;
+    AudioSource audioSource;
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 100f;
   
@@ -15,6 +17,8 @@ public class Movement : MonoBehaviour //Inheritance, Inheriting content from Mon
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -46,10 +50,20 @@ public class Movement : MonoBehaviour //Inheritance, Inheriting content from Mon
     void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
-        {          // (X,Y,Z)
+        {         
+            
+            if (!audioSource.isPlaying)
+                { 
+                 audioSource.Play();
+                }
+
             //rb.AddRelativeForce(Vector3.up); This is another way to do below
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-        }   
+        } 
+        else
+        {
+            audioSource.Stop();
+        }
 
         
     }
