@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
   
+   [SerializeField] float invokeTime = 1f;
 
    void OnCollisionEnter(Collision other) 
    {
@@ -13,19 +14,35 @@ public class CollisionHandler : MonoBehaviour
         case "Friendly":
             Debug.Log("Friendly object was hit...");
             break;
-        case "Fuel":
-            Debug.Log("Fuel object was hit...");
-            break;
         case "Finish":
             Debug.Log("Congrats you finished!");
-            LoadNextLevel();
+            StartSuccessSequence("LoadNextLevel");
             break;
         default:
             Debug.Log("Sorry you blew up!");
-            ReloadLevel();
+            StartCrashSequence("ReloadLevel");
             break;
      }
    }
+
+    void StartSuccessSequence(string methodAction)
+    {
+        //  TODO add SFX upon landing
+        // TODO add particaly effect 
+        GetComponent<Movement>().enabled = false;
+        Invoke(methodAction, invokeTime);
+         
+
+    }
+
+    void StartCrashSequence(string methodAction)
+    {
+        //  TODO add SFX upon crash
+        // TODO add particaly effect 
+        GetComponent<Movement>().enabled = false;
+        Invoke(methodAction, invokeTime);
+         
+    }
 
     void LoadNextLevel()
     {
