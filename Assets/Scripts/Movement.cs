@@ -8,10 +8,12 @@ public class Movement : MonoBehaviour //Inheritance, Inheriting content from Mon
 {
     // Get reference to component 
     // Type Variable;
-    Rigidbody rb;
-    AudioSource audioSource;
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 100f;
+    [SerializeField] AudioClip mainEngine;
+
+    Rigidbody rb;
+    AudioSource audioSource;
   
     // Start is called before the first frame update
     void Start()
@@ -54,7 +56,7 @@ public class Movement : MonoBehaviour //Inheritance, Inheriting content from Mon
             
             if (!audioSource.isPlaying)
                 { 
-                 audioSource.Play();
+                 audioSource.PlayOneShot(mainEngine);
                 }
 
             //rb.AddRelativeForce(Vector3.up); This is another way to do below

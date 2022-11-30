@@ -5,6 +5,15 @@ public class CollisionHandler : MonoBehaviour
 {
   
    [SerializeField] float invokeTime = 1f;
+   [SerializeField] AudioClip success;
+   [SerializeField] AudioClip crash;
+
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
    void OnCollisionEnter(Collision other) 
    {
@@ -27,7 +36,7 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequence(string methodAction)
     {
-        //  TODO add SFX upon landing
+        audioSource.PlayOneShot(success);
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
@@ -37,7 +46,7 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence(string methodAction)
     {
-        //  TODO add SFX upon crash
+        audioSource.PlayOneShot(crash);
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
