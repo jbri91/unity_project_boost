@@ -52,7 +52,7 @@ public class CollisionHandler : MonoBehaviour
         Invoke(methodAction, invokeTime);
          
     }
-
+ 
     void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
