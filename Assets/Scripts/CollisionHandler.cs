@@ -10,6 +10,9 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
+    bool isTransitioning = false;
+
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -25,11 +28,26 @@ public class CollisionHandler : MonoBehaviour
             break;
         case "Finish":
             Debug.Log("Congrats you finished!");
-            StartSuccessSequence("LoadNextLevel");
+            if (isTransitioning == false)
+            {
+                StartSuccessSequence("LoadNextLevel");
+            }
+            else
+            {
+                Debug.Log("Transitioning...");
+            }
             break;
         default:
             Debug.Log("Sorry you blew up!");
-            StartCrashSequence("ReloadLevel");
+            if (isTransitioning == false)
+            {
+                StartCrashSequence("ReloadLevel");
+               
+            }
+            else 
+            {
+                Debug.Log("Transitioning");
+            }
             break;
      }
    }
@@ -37,6 +55,7 @@ public class CollisionHandler : MonoBehaviour
     void StartSuccessSequence(string methodAction)
     {
         audioSource.PlayOneShot(success);
+        isTransitioning = true;
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
@@ -47,6 +66,7 @@ public class CollisionHandler : MonoBehaviour
     void StartCrashSequence(string methodAction)
     {
         audioSource.PlayOneShot(crash);
+        isTransitioning = true;
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
@@ -57,11 +77,13 @@ public class CollisionHandler : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
+        isTransitioning = false;
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
             {
                 nextSceneIndex = 0;
             }
         SceneManager.LoadScene(nextSceneIndex);
+        
     }
 
     void ReloadLevel()
