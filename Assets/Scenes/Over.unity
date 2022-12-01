@@ -312,17 +312,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landing Pad
       objectReference: {fileID: 0}
-    - target: {fileID: 5791181746027404872, guid: 4685ddabaa8ef3e4bbd24851a7cb4675, type: 3}
-      propertyPath: m_TagString
-      value: Friendly
-      objectReference: {fileID: 0}
     - target: {fileID: 6910439768278524951, guid: 4685ddabaa8ef3e4bbd24851a7cb4675, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910439768278524951, guid: 4685ddabaa8ef3e4bbd24851a7cb4675, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.0153
       objectReference: {fileID: 0}
     - target: {fileID: 6910439768278524951, guid: 4685ddabaa8ef3e4bbd24851a7cb4675, type: 3}
       propertyPath: m_LocalPosition.x
@@ -440,11 +432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7675013339222340498, guid: 4fb32f40acbb80641840714bffce6bc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44
+      value: -43.91
       objectReference: {fileID: 0}
     - target: {fileID: 7675013339222340498, guid: 4fb32f40acbb80641840714bffce6bc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 4.76
       objectReference: {fileID: 0}
     - target: {fileID: 7675013339222340498, guid: 4fb32f40acbb80641840714bffce6bc3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -531,17 +523,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5218442216726370579, guid: aa038055025fa214c98fbee3cc7fe22e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 85031e23367d1e443a4203907b0e8cf9, type: 2}
     - target: {fileID: 5218442216726370581, guid: aa038055025fa214c98fbee3cc7fe22e, type: 3}
       propertyPath: m_Name
       value: Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5218442216726370581, guid: aa038055025fa214c98fbee3cc7fe22e, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa038055025fa214c98fbee3cc7fe22e, type: 3}
