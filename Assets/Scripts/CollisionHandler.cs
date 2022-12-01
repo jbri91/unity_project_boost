@@ -21,6 +21,8 @@ public class CollisionHandler : MonoBehaviour
    void OnCollisionEnter(Collision other) 
    {
      
+     if (isTransitioning) { return; }
+     
      switch (other.gameObject.tag)
      {
         case "Friendly":
@@ -28,34 +30,20 @@ public class CollisionHandler : MonoBehaviour
             break;
         case "Finish":
             Debug.Log("Congrats you finished!");
-            if (isTransitioning == false)
-            {
-                StartSuccessSequence("LoadNextLevel");
-            }
-            else
-            {
-                Debug.Log("Transitioning...");
-            }
+            StartSuccessSequence("LoadNextLevel");
             break;
         default:
             Debug.Log("Sorry you blew up!");
-            if (isTransitioning == false)
-            {
-                StartCrashSequence("ReloadLevel");
-               
-            }
-            else 
-            {
-                Debug.Log("Transitioning");
-            }
+            StartCrashSequence("ReloadLevel");
             break;
      }
    }
 
     void StartSuccessSequence(string methodAction)
-    {
-        audioSource.PlayOneShot(success);
+    {   
         isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(success);
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
@@ -65,8 +53,9 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence(string methodAction)
     {
-        audioSource.PlayOneShot(crash);
         isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crash);
         // TODO add particaly effect 
         GetComponent<Movement>().enabled = false;
         Invoke(methodAction, invokeTime);
